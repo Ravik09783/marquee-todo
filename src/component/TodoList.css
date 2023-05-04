@@ -1,0 +1,62 @@
+.todo-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+  }
+  
+  .todo-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .todo-header input[type="checkbox"] {
+    margin-right: 1rem;
+  }
+  
+  .todo-header .completed {
+    text-decoration: line-through;
+  }
+  
+  .subtask-form {
+    margin-top: 0.5rem;
+  }
+  
+  .subtask-input {
+    margin-right: 0.5rem;
+    padding: 0.3rem;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .subtask-button {
+    padding: 0.3rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007aff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .subtask-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+  }
+  
+  .subtask-list li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .subtask-list input[type="checkbox"] {
+    margin-right: 1rem;
+  }
+  
+  .subtask-list .completed {
+    text-decoration: line-through;
+  }
+  

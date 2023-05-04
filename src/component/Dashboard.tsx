@@ -1,62 +1,56 @@
-// import React from 'react'
-
-// export const Dashboard = () => {
-//   return (
-//     <div>Dashboard</div>
-//   )
-// }
-
-
 import React, { useState } from 'react';
-import './Dashboard.css';
+import TodoList from './TodoList';
 
-interface Todo {
+type Subtask = {
+  task: string;
+  completed: boolean;
+};
+
+type Todo = {
   id: number;
   task: string;
   completed: boolean;
-}
+  subtasks: Subtask[];
+};
 
-const Dashboard: React.FC = () => {
+function Dashboard() {
+  const [newTask, setNewTask] = useState('');
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [newTask, setNewTask] = useState<string>('');
 
-  const handleNewTaskChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTask(event.target.value);
+  const handleNewTaskChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewTask(e.target.value);
   };
 
-  const handleNewTaskSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (newTask.trim() === '') {
-      return;
-    }
-    const newTodo: Todo = {
-      id: Date.now(),
-      task: newTask,
-      completed: false,
-    };
+  const handleNewTaskSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!newTask) return;
+    const newTodo = { id: Date.now(), task: newTask, completed: false, subtasks: [] };
     setTodos([...todos, newTodo]);
     setNewTask('');
   };
 
+  const handleSubtaskSubmit = (parentId: number, newSubtask: string) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === parentId) {
+          return { ...todo, subtasks: [...todo.subtasks, { task: newSubtask, completed: false }] };
+        }
+        return todo;
+      })
+    );
+  };
+
   return (
-    <div className="todo-list-container">
+    
+<div className="dashboard">
       <h1>Todo List</h1>
       <form onSubmit={handleNewTaskSubmit}>
         <input type="text" value={newTask} onChange={handleNewTaskChange} placeholder="Add new task" />
         <button type="submit">Add Task</button>
       </form>
-      <ul className="todo-list">
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <input type="checkbox" />
-            <span className="todo-task">{todo.task}</span>
-          </li>
-        ))}
-      </ul>
+      <TodoList todos={todos} onSubtaskSubmit={handleSubtaskSubmit} />
     </div>
   );
-};
+}
 
 export default Dashboard;
-
-
