@@ -5,6 +5,7 @@ import Dashboard from './component/Dashboard';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import PrivateRoutes from './PrivateRoutes';
 import { useState, createContext } from 'react';
+import NotFound from './component/NotFound';
 
 export const LoginContext = createContext({});
 
@@ -32,7 +33,8 @@ function App(): JSX.Element {
       <Route path="/dashboard" element={<Dashboard />} />
     </Route>
     <Route path="/login" element={ <Login  />} />
-    <Route path="*" element={<Navigate to="/login" />} />
+    <Route path="/" element={<Navigate to="/login" />} />
+    <Route path="*" element={<NotFound/>} />
   </Routes>
 </Router>
     </div>

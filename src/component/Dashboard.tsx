@@ -77,7 +77,7 @@ function Dashboard() {
       
   
       <div className='dashboard'>
-        <h1>Todo List</h1>
+        <h2>Todo List</h2>
         <form onSubmit={handleNewTaskSubmit}>
           <input
             type='text'
