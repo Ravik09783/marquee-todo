@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import './Login.css';
+import { LoginContext } from '../App';
 
-const Login = ({ setUserData }:any) => {
+const Login = () => {
+  const { setLoginData }:any = useContext(LoginContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
@@ -27,7 +29,8 @@ const Login = ({ setUserData }:any) => {
         localStorage.setItem('token', data.access_token);
 
         setLoggedIn(true);
-        setUserData(data.personalUserData);
+        setLoginData(data.personalUserData)
+       
       } else {
         throw new Error('Invalid email or password');
       }

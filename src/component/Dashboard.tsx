@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext  } from 'react';
 import TodoList from './TodoList';
 import { useNavigate } from 'react-router-dom';
+import { LoginContext } from '../App';
 import './Dashboard.css'
 
 type Subtask = {
@@ -19,7 +20,9 @@ type Todo = {
   subtasks: Subtask[];
 };
 
-function Dashboard({ userData }: DashboardProps) {
+function Dashboard() {
+  const { loginData }:any = useContext(LoginContext);
+
   const [newTask, setNewTask] = useState('');
   const [todos, setTodos] = useState<Todo[]>([]);
   const navigate = useNavigate()
@@ -52,7 +55,6 @@ function Dashboard({ userData }: DashboardProps) {
     window.location.reload();
   }
 
-  console.log("55555",userData)
 
   return (
     <div>
@@ -65,8 +67,8 @@ function Dashboard({ userData }: DashboardProps) {
           <h4>Welcome to the Dashboard</h4>
         </div>
         <div className='card-body'>
-          <p>{userData[0]?.name}</p>
-          <p>{userData[0]?.email}</p>
+          <p>{loginData[0]?.name}</p>
+          <p>{loginData[0]?.email}</p>
         </div>
       </div>
     </div>
