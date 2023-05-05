@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
-const Login = () => {
+import './Login.css';
+
+const Login = ({ setUserData }:any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
@@ -22,11 +24,10 @@ const Login = () => {
         const data = await response.json();
         console.log('Your data is:', data);
 
-        // Store the authentication token in local storage
         localStorage.setItem('token', data.access_token);
 
-        // Update the state to indicate that the user is logged in
         setLoggedIn(true);
+        setUserData(data.personalUserData);
       } else {
         throw new Error('Invalid email or password');
       }
@@ -40,24 +41,26 @@ const Login = () => {
   }
 
   return (
-    <div className="login-form">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <div className="login-card">
+    <h2>Login</h2>
+    <form onSubmit={handleLogin}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  
+  
   );
 };
 

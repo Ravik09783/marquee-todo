@@ -1,39 +1,83 @@
+.user-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  width: 400px;
+}
+
+.card-header {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.logout-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.logout-btn button{
+  color: white;
+  background-color: darkorange;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
 .dashboard {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-  }
-  
-  form {
-    display: flex;
-    margin-bottom: 20px;
-  }
-  
-  input[type="text"] {
-    margin-right: 0.5rem;
-    padding: 0.3rem;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  button[type="submit"] {
-    padding: 10px;
-    background-color: #008CBA;
-    color: #fff;
-    font-size: 16px;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #005f7f;
-  }
-  
+  width: 80%;
+  margin-top: 30px;
+}
+
+.dashboard h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+input[type='text'] {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+button[type='submit'] {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type='submit']:hover {
+  background-color: #3e8e41;
+}
