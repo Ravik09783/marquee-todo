@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import './Login.css';
-// import { useNavigate } from 'react-router-dom';
-
+import { useNavigate  } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-//   const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
@@ -21,12 +20,13 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Your data is:", data)
+        console.log('Your data is:', data);
+
         // Store the authentication token in local storage
-        localStorage.setItem('token', data.access_token
-        );
-        // Redirect the user to the dashboard
-        // navigate('/dashboard');
+        localStorage.setItem('token', data.access_token);
+
+        // Update the state to indicate that the user is logged in
+        setLoggedIn(true);
       } else {
         throw new Error('Invalid email or password');
       }
@@ -35,9 +35,11 @@ const Login = () => {
     }
   };
 
-  return (
-   
+  if (loggedIn) {
+    navigate('/dashboard');
+  }
 
+  return (
     <div className="login-form">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
